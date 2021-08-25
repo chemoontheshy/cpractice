@@ -11,7 +11,7 @@ struct RTSP_header
 };
 
 int main() {
-	char test[10] = "0123456789";
+	char test[11] = "0123456789";
 	cout << "test:" << +test[0] << endl;
 	cout << "test:" << &test << endl;
 	cout << "test:" << &test+1 << endl;
