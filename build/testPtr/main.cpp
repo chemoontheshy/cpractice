@@ -27,11 +27,32 @@ struct NewHeader
 	uint16_t Type : 6;
 	uint16_t layerId_1 : 1;
 #else
-	uint16_t layerId_1	: 5;
-	uint16_t tid		: 3;
-	uint16_t flag		: 1;
+	uint16_t layerId_1	: 1;
 	uint16_t Type		: 6;
-	uint16_t layerId_2	: 1;
+	uint16_t flag		: 1;
+
+	uint16_t tid		: 3;
+	uint16_t layerId_2	: 5;
+#endif // RTP_BIG_ENDIAN
+};
+
+
+struct HEVCHeader_uint8_t
+{
+#ifdef RTP_BIG_ENDIAN
+	uint8_t layerId_2 : 5;
+	uint8_t tid : 3;
+
+	uint8_t flag : 1;
+	uint8_t Type : 6;
+	uint8_t layerId_1 : 1;
+#else
+	uint8_t layerId_1 : 1;
+	uint8_t Type : 6;
+	uint8_t flag : 1;
+
+	uint8_t tid : 3;
+	uint8_t layerId_2 : 5;
 #endif // RTP_BIG_ENDIAN
 };
 
@@ -51,16 +72,16 @@ int main()
 	printf("head2=0x%x\n", head2);
 	/*
 	* printf
-	* hex : head1=0xc9
-	* hex : head2=0xc0
-	* bin : head1=11001001
-	* bin :	head2=11000000
+	* hex : head1=0x01
+	* hex : head2=0x32
+	* bin : head1=00000001
+	* bin :	head2=00110010
 	* 理论值 ：00110010 00000001
 	* 实际值 ：00000001 00110010
 	* 
 	*/
 
-	NewHeader newHeader;
+	HEVCHeader_uint8_t newHeader;
 	newHeader.flag = 0;
 	newHeader.Type = 25;
 	newHeader.layerId_1 = 0;
@@ -73,12 +94,12 @@ int main()
 	printf("newhead2=0x%x\n", newhead2);
 	/*
 	* printf
-	* hex : head1=0xc9
-	* hex : head2=0xc0
-	* bin : head1=11001001
-	* bin :	head2=11000000
+	* hex : head1=0x32
+	* hex : head2=0x01
+	* bin : head1=00110010
+	* bin :	head2=00000001
 	* 理论值 ：00110010 00000001
-	* 实际值 ：00000001 00110010
+	* 实际值 ：00110010 00000001
 	* 
 	*/
 
