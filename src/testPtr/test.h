@@ -34,6 +34,23 @@ namespace vsnc
 		/// <param name="packet">传入一帧数据</param>
 		/// <returns>正确返回3或者4，错误返回-1</returns>
 		int CheckFrameHeader(const Packet& packet);
+
+
+		class Test2
+		{
+		public:
+			Test2(int num) :n(num) {}
+		private:
+			int n;
+		};
+		class Test1
+		{
+		public:
+			Test1(int num) :n(num) {}
+		private:
+			int n;
+		};
+
 	}
 
 }
