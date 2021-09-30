@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="..\..\src\qMongoose\http_server.h" />
+    <ClInclude Include="..\..\src\qMongoose\common\mongoose.h">
+      <Filter>common</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\qMongoose\http_server.cpp" />
+    <ClCompile Include="..\..\src\qMongoose\common\mongoose.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\qMongoose\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="common">
+      <UniqueIdentifier>{08d1cc9c-9e22-4e8b-9f06-eb02b33f3464}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
