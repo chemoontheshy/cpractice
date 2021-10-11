@@ -36,20 +36,7 @@ namespace vsnc
 		int CheckFrameHeader(const Packet& packet);
 
 
-		class Test2
-		{
-		public:
-			Test2(int num) :n(num) {}
-		private:
-			int n;
-		};
-		class Test1
-		{
-		public:
-			Test1(int num) :n(num) {}
-		private:
-			int n;
-		};
+		
 
 	}
 
