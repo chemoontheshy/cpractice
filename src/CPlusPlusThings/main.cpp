@@ -8,15 +8,20 @@
 #include "test.h"
 
 
+void callback(std::string name, size_t age)
+{
+    std::cout << name << " " << age << std::endl;
+}
+
 bool fun(std::string name, size_t age, vsnc::cplus::OnRspCallback req_callback)
 {
-    req_callback("taka", 19);
+    req_callback(name, age);
     return true;
 }
 int main(int argc, char const* argv[])
 {
 
     vsnc::cplus::FunctionClass funClass;
-    funClass.PrintFun(fun);
+    fun("taka", 18, callback);
     return 0;
 }

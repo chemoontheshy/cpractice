@@ -10,5 +10,4 @@
 void vsnc::cplus::FunctionClass::PrintFun(ReqHandler req)
 {
 	
-	std::cout <<sizeof(req)  << std::endl;
 }
