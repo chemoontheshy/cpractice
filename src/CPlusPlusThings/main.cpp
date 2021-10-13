@@ -18,10 +18,12 @@ bool fun(std::string name, size_t age, vsnc::cplus::OnRspCallback req_callback)
     req_callback(name, age);
     return true;
 }
+
+class A{};
+
 int main(int argc, char const* argv[])
 {
-
-    vsnc::cplus::FunctionClass funClass;
-    fun("taka", 18, callback);
+    A a;
+    std::cout << sizeof(a) << std::endl;
     return 0;
 }
