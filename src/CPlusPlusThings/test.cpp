@@ -9,5 +9,5 @@
 
 void vsnc::cplus::FunctionClass::PrintFun(ReqHandler req)
 {
-	
+	req
 }

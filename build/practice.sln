@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qMongoose", "qMongoose\qMon
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CPlusPlusThings", "CPlusPlusThings\CPlusPlusThings.vcxproj", "{99C1CCCE-5620-4174-8D33-3D40F53FAFA1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testMjson", "testMjson\testMjson.vcxproj", "{B3F72763-8747-4D2D-8B3E-D8310CF2E571}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -71,6 +73,14 @@ Global
 		{99C1CCCE-5620-4174-8D33-3D40F53FAFA1}.Release|x64.Build.0 = Release|x64
 		{99C1CCCE-5620-4174-8D33-3D40F53FAFA1}.Release|x86.ActiveCfg = Release|Win32
 		{99C1CCCE-5620-4174-8D33-3D40F53FAFA1}.Release|x86.Build.0 = Release|Win32
+		{B3F72763-8747-4D2D-8B3E-D8310CF2E571}.Debug|x64.ActiveCfg = Debug|x64
+		{B3F72763-8747-4D2D-8B3E-D8310CF2E571}.Debug|x64.Build.0 = Debug|x64
+		{B3F72763-8747-4D2D-8B3E-D8310CF2E571}.Debug|x86.ActiveCfg = Debug|Win32
+		{B3F72763-8747-4D2D-8B3E-D8310CF2E571}.Debug|x86.Build.0 = Debug|Win32
+		{B3F72763-8747-4D2D-8B3E-D8310CF2E571}.Release|x64.ActiveCfg = Release|x64
+		{B3F72763-8747-4D2D-8B3E-D8310CF2E571}.Release|x64.Build.0 = Release|x64
+		{B3F72763-8747-4D2D-8B3E-D8310CF2E571}.Release|x86.ActiveCfg = Release|Win32
+		{B3F72763-8747-4D2D-8B3E-D8310CF2E571}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
