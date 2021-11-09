@@ -2,5 +2,9 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\..\src\BigEndian\main.cpp" />
+    <ClCompile Include="..\..\src\BigEndian\utils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\BigEndian\utils.h" />
   </ItemGroup>
 </Project>
