@@ -104,6 +104,13 @@ std::string dump_json(const std::map<std::string, std::string>& mapList)
 
 int main()
 {
+	std::string body = "{\"source\":[\"2\"]}";
+	char buf[10];
+	auto b = mjson_get_string(body.c_str(),strlen(body.c_str()), "$.source[0]", buf, sizeof(buf));
+	std::cout << buf << std::endl;
+	int temp = std::atoi(buf);
+	std::cout << temp << std::endl;
+	return 0;
 	std::string postdata = "{\"value\":\"true\"}";
 	std::string checkKey = "2";
 	auto a = __get_string(postdata, checkKey);
