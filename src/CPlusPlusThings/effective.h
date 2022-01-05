@@ -1,5 +1,5 @@
 /**
- * @file main.h
+ * @file effective.h
  * @author xzf (xzfandzgx@gmal.com)
  * @brief 用于学习effective C++
  * @version 0.1
@@ -8,12 +8,13 @@
  * @copyright Copyright (c) 2021
  *
  */
-#include "effective.h"
+#include <iostream>
 
 
-
-int main(int argc, char const* argv[])
+namespace vsnc
 {
-    int a;
-    std::cout << typeid(a).name() << std::endl;
+	namespace veffect
+	{
+
+	}
 }

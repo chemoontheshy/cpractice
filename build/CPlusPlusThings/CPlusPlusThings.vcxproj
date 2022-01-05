@@ -144,10 +144,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\CPlusPlusThings\main.cpp" />
-    <ClCompile Include="..\..\src\CPlusPlusThings\test.cpp" />
+    <ClCompile Include="..\..\src\CPlusPlusThings\effective.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\CPlusPlusThings\test.h" />
+    <ClInclude Include="..\..\src\CPlusPlusThings\effective.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
