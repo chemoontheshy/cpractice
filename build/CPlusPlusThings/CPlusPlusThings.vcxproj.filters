@@ -3,8 +3,10 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\CPlusPlusThings\effective.cpp" />
     <ClCompile Include="..\..\src\CPlusPlusThings\main.cpp" />
+    <ClCompile Include="..\..\src\CPlusPlusThings\JT808Parser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\CPlusPlusThings\effective.h" />
+    <ClInclude Include="..\..\src\CPlusPlusThings\JT808Parser.h" />
   </ItemGroup>
 </Project>
