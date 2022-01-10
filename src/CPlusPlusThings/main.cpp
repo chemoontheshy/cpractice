@@ -129,7 +129,7 @@ int main(int argc, char const* argv[])
 	{
 		auto pVehicleInfo = reinterpret_cast<vsnc::vjt::VehicleInfo*>(outPacket.Data);
 
-		std::cout << "speed: " << ntohs(pVehicleInfo->Speed) << std::endl;
+		std::cout << "speed: " << pVehicleInfo->Speed << std::endl;
 		std::cout << "pVehicleInfo->Turnsignal: " << pVehicleInfo->Turnsignal<< std::endl;
 		break;
 	}

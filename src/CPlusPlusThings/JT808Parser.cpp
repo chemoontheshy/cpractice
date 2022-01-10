@@ -11,18 +11,18 @@ namespace vsnc
 
 		//转义相关标识符protocolEscapeFlag
 		/// <summary> 标识位 </summary>
-		static constexpr uint8_t PROTOCOL_SIGN          = 0x7E;
+		static constexpr uint8_t PROTOCOL_SIGN = 0x7E;
 		/// <summary> 转义标识位 </summary>
-		static constexpr uint8_t PROTOCOL_ESCAPE        = 0x7D;
+		static constexpr uint8_t PROTOCOL_ESCAPE = 0x7D;
 		/// <summary> 0x7E<-->0x7D后紧跟一个0x02 </summary>
-		static constexpr uint8_t PROTOCOL_ESCAPE_SIGN   = 0x02;
+		static constexpr uint8_t PROTOCOL_ESCAPE_SIGN = 0x02;
 		/// <summary> 0x7D<-->0x7D后紧跟一个0x01 </summary>
 		static constexpr uint8_t PROTOCOL_ESCAPE_ESCAPE = 0x01;
 
 		/// <summary> 上位机下发车辆信息 </summary>
-		static constexpr uint16_t VEHICLEINFO           = 0x88F1;
+		static constexpr uint16_t VEHICLEINFO = 0x88F1;
 		/// <summary> 上位机下发车辆信息 </summary>
-		static constexpr uint16_t BRAKESYSTEM           = 0x08B1;
+		static constexpr uint16_t BRAKESYSTEM = 0x08B1;
 
 		/// <summary>
 		/// 消息体属性为2字节
@@ -82,7 +82,7 @@ namespace vsnc
 			uint16_t PacketSequence;
 		}JTPacketItem;
 
-		
+
 
 
 		/// <summary>
@@ -91,8 +91,8 @@ namespace vsnc
 		/// <param name="data">去掉标识位的数据包头指针</param>
 		/// <param name="length">去掉标识位的数据包长度</param>
 		/// <returns>以vector数组的形式返回转义还原后的数据包</returns>
-		static std::vector<uint8_t> __escape(const uint8_t* data,const size_t& length) noexcept;
-		
+		static std::vector<uint8_t> __escape(const uint8_t* data, const size_t& length) noexcept;
+
 		/// <summary>
 		/// 计算校验码
 		/// </summary>
@@ -107,7 +107,7 @@ namespace vsnc
 		/// <param name="src">BCD码</param>
 		/// <returns>16进制</returns>
 		static uint8_t __bcd_to_hex(uint8_t const& src);
-		
+
 	}
 }
 
@@ -118,7 +118,7 @@ uint8_t vsnc::vjt::__bcd_to_hex(uint8_t const& src)
 	return uint8_t();
 }
 
-std::vector<uint8_t> vsnc::vjt::__escape(const uint8_t* data,const size_t& length) noexcept
+std::vector<uint8_t> vsnc::vjt::__escape(const uint8_t* data, const size_t& length) noexcept
 {
 	std::vector<uint8_t> escapeList;
 	for (size_t i = 0; i < length; ++i) {
@@ -163,7 +163,7 @@ JTMessage vsnc::vjt::JTParser(const Packet& originalPacket, Packet& messagePacke
 	}
 	// 2.验证校验码
 	auto checkSum = __check(&temp.front(), temp.size());
-	if (checkSum != temp.at(temp.size()-2)) {
+	if (checkSum != temp.at(temp.size() - 2)) {
 		std::cout << "false" << std::endl;
 		return JTMessage::UNKNOWN;
 	}
@@ -178,18 +178,32 @@ JTMessage vsnc::vjt::JTParser(const Packet& originalPacket, Packet& messagePacke
 	if (jt808Header->Body.Subcontract) {
 		return JTMessage::UNKNOWN;
 	}
+	// 5.去掉标识位和消息头
+	data += 12;
+	length -= 13;
 	// 如果是车辆信息返回车辆信息枚举
 	if (jt808Header->Id == VEHICLEINFO) {
 		// 去掉消息头
-		memcpy(originalPacket.Data, data + 12, length - 13);
+		auto vehicleInfo = reinterpret_cast<VehicleInfo*>(data);
+		// 大端转小端。
+		vehicleInfo->Speed = ntohs(vehicleInfo->Speed);
+		// 使用原来的传进来的内存，否则函数销毁时，就会销毁。
+		memcpy(originalPacket.Data, vehicleInfo, length);
 		messagePacket.Data = originalPacket.Data;
 		// 去掉消息头长度和校验码
-		messagePacket.Length = length - 13;
+		messagePacket.Length = length;
 
 		return JTMessage::VEHICLEINFO;
 	}
 	// 如果是车辆信息返回车辆信息枚举
 	if (jt808Header->Id == BRAKESYSTEM) {
+		auto brakeSystem = reinterpret_cast<Brakesystem*>(data);
+		brakeSystem->Distance = ntohs(brakeSystem->Speed);
+		// 使用原来的传进来的内存，否则函数销毁时，就会销毁。
+		memcpy(originalPacket.Data, brakeSystem, length);
+		messagePacket.Data = originalPacket.Data;
+		// 去掉消息头长度和校验码
+		messagePacket.Length = length;
 		return JTMessage::BRAKESYSTEM;
 	}
 	// 其他不分析，直接返回未知枚举
