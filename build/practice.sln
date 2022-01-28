@@ -21,6 +21,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testJwt", "testJwt\testJwt.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "smartPointers", "smartPointers\smartPointers.vcxproj", "{BBAF3F11-61BB-4036-9D6D-C12CA13930D5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "leetcodeTest", "leetcodeTest\leetcodeTest.vcxproj", "{1537B02E-4141-421E-B4A0-90C908825278}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -101,6 +103,14 @@ Global
 		{BBAF3F11-61BB-4036-9D6D-C12CA13930D5}.Release|x64.Build.0 = Release|x64
 		{BBAF3F11-61BB-4036-9D6D-C12CA13930D5}.Release|x86.ActiveCfg = Release|Win32
 		{BBAF3F11-61BB-4036-9D6D-C12CA13930D5}.Release|x86.Build.0 = Release|Win32
+		{1537B02E-4141-421E-B4A0-90C908825278}.Debug|x64.ActiveCfg = Debug|x64
+		{1537B02E-4141-421E-B4A0-90C908825278}.Debug|x64.Build.0 = Debug|x64
+		{1537B02E-4141-421E-B4A0-90C908825278}.Debug|x86.ActiveCfg = Debug|Win32
+		{1537B02E-4141-421E-B4A0-90C908825278}.Debug|x86.Build.0 = Debug|Win32
+		{1537B02E-4141-421E-B4A0-90C908825278}.Release|x64.ActiveCfg = Release|x64
+		{1537B02E-4141-421E-B4A0-90C908825278}.Release|x64.Build.0 = Release|x64
+		{1537B02E-4141-421E-B4A0-90C908825278}.Release|x86.ActiveCfg = Release|Win32
+		{1537B02E-4141-421E-B4A0-90C908825278}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
