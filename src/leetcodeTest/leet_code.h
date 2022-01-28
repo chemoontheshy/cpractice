@@ -56,6 +56,18 @@ namespace vsnc
 			bool containsDuplicate(std::vector<int>& nums) {
 				return std::set<int>(nums.begin(), nums.end()).size() != nums.size();
 			}
+			std::string replaceSpace(std::string s) {
+				std::string temp;
+				for (size_t i = 0; i < s.size(); i++) {
+					if (s.at(i) == ' ') {
+						temp = temp + "%20";
+					}
+					else {
+						temp = temp + s.at(i);
+					}
+				}
+				return temp;
+			}
 		};
 
 		class CQueue {
