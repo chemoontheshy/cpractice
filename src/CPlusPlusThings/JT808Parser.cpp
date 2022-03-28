@@ -180,9 +180,11 @@ JTMessage vsnc::vjt::JTParser(const Packet& originalPacket, Packet& messagePacke
 	}
 	// 如果是车辆信息返回车辆信息枚举
 	if (jt808Header->Id == VEHICLEINFO) {
+
+
 		// 去掉消息头
-		memcpy(originalPacket.Data, data + 12, length - 13);
-		messagePacket.Data = originalPacket.Data;
+		//memcpy(originalPacket.Data, data + 12, length - 13);
+		messagePacket.Data = data + 12;
 		// 去掉消息头长度和校验码
 		messagePacket.Length = length - 13;
 

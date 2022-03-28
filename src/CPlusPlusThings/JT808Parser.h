@@ -87,6 +87,24 @@ namespace vsnc
 		/// <returns>信息类型</returns>
 		JTMessage JTParser(const Packet& originalPacket, Packet& messagePacket) noexcept;
 
+		/// <summary>
+		/// 解包后的结构体
+		/// </summary>
+		typedef struct Test
+		{
+			/// <summary> 消息类枚举</summary>
+			JTMessage message;
+			/// <summary> 消息指针头</summary>
+			uint8_t* data;
+		};
+		
+		/// <summary>
+		/// 原始数据包解析（里面需要包含转义还原，验证校验码，如果有加密还需要解析加密）
+		/// </summary>
+		/// <param name="originalPacket">输入：原始数据包</param>
+		/// <returns></returns>
+		Test JTTest(const Packet& originalPacket) noexcept;
+
 	}
 }
 
