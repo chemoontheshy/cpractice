@@ -1,7 +1,16 @@
 #include "leet_code.h"
 
+struct Test
+{
+	int A;
+};
+
 int main()
 {
+	std::unique_ptr<Test> test;
+	test = new struct Test();
+
+
 	std::vector<int> nums = { -1, 0, 3, 5, 9, 12 };
 	int target = 6;
 	vsnc::leet::Solution solution;
@@ -17,5 +26,5 @@ int main()
 	minStack.pop();
 	std::cout << minStack.top() << std::endl;
 	std::cout << minStack.min() << std::endl;
-
+	return 0;
 }

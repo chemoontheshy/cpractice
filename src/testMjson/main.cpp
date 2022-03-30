@@ -9,6 +9,11 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <unordered_map>
+
+#define __VSNC_IN     // 输入参数
+#define __VSNC_OUT    // 输出参数
+#define __VSNC_IN_OUT // 输入输出参数
 
 static std::string __to_netmask(const size_t& cidr)
 {
@@ -101,48 +106,47 @@ std::string dump_json(const std::map<std::string, std::string>& mapList)
 	return "{" + result + "}";
 }
 
+bool __parse_json(const std::string& __VSNC_IN body, std::unordered_map<std::string, std::string>& __VSNC_OUT replyList) noexcept
+{
+	int koff, klen, voff, vlen, vtype, off;
+	auto bodyPtr = body.c_str();
+	for (off = 0; (off = mjson_next(bodyPtr, body.size(), off, &koff, &klen, &voff, &vlen, &vtype)) != 0;)
+	{
+		//std::cout << "key: " << std::string(bodyPtr + koff+1, klen-2) << " value:" << std::string(bodyPtr + voff, vlen)<<std::endl;
+		replyList.emplace(std::string(bodyPtr + koff + 1, klen - 2), std::string(bodyPtr + voff, vlen));
+		
+	}
+	return true;
+}
+bool __parse_array(const std::string& __VSNC_IN body, std::unordered_map<std::string, std::string>& __VSNC_OUT replyList) noexcept
+{
+	int koff, klen, voff, vlen, vtype, off;
+	auto bodyTemp = "[" + body + "]";
+	auto bodyPtr = bodyTemp.c_str();
+	for (off = 0; (off = mjson_next(bodyPtr, body.size(), off, &koff, &klen, &voff, &vlen, &vtype)) != 0;)
+	{
+		std::cout<< " value:" << std::string(bodyPtr + voff+1, vlen-2)<<std::endl;
+		//replyList.emplace(std::string(bodyPtr + koff + 1, klen - 2), std::string(bodyPtr + voff, vlen));
+
+	}
+	return true;
+}
 
 int main()
 {
-	std::string body = "{\"source\":[\"2\"]}";
-	char buf[10];
-	auto b = mjson_get_string(body.c_str(),strlen(body.c_str()), "$.source[0]", buf, sizeof(buf));
-	std::cout << buf << std::endl;
-	int temp = std::atoi(buf);
-	std::cout << temp << std::endl;
+
+	//std::string body = ""\"1\",\"2\";
+	std::string body = "\"1\",\"2\",\"3\"";
+	std::unordered_map<std::string, std::string> replyList;
+	__parse_array(body, replyList);
 	return 0;
-	std::string postdata = "{\"value\":\"true\"}";
-	std::string checkKey = "2";
-	auto a = __get_string(postdata, checkKey);
-	if (a.empty())
+	__parse_json(body, replyList);
+	if (__parse_json(body, replyList))
 	{
-		std::cout << "test" << std::endl;
-		std::cout << a << std::endl;
+		for (auto& reply : replyList)
+		{
+			std::cout << reply.first <<":" <<reply.second<< std::endl;
+		}
 	}
-	std::map<std::string, std::string> mapList;
-	std::map<std::string, std::string> amapList;
-	std::string local = "192.168.100.124/24";
-	std::string adress = local.substr(0, strlen(local.c_str()) - 3);
-	std::string netmask = local.substr(strlen(local.c_str())-2);
-	std::string getway = "192.168.100.1";
-	mapList["address"] = local.substr(0, strlen(local.c_str()) - 3);
-	mapList["netmask"] = local.substr(strlen(local.c_str()) - 2);
-	mapList["gatway"] = "192.168.100.1";
-	auto reply = dump_json(mapList);
-	std::cout << "reply: " << reply << std::endl;
-
-	auto address = __get_string(reply, "address");
-	if (!address.empty())
-	{
-		amapList["address"] = adress;
-	}
-	reply = dump_json(amapList);
-	std::cout << "reply: " << reply << std::endl;
-
-	auto id = toCidr("255.255.255.255");
-	std::cout << "id: " << id << std::endl;
-
-	auto sNetmask = __to_netmask(16);
-	std::cout << "sNetmask: " << sNetmask << std::endl;
 	return 0;
 }
