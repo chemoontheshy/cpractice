@@ -15,12 +15,33 @@ namespace vsnc
 			std::string m_sName;
 			size_t      m_iAge;
 		};
+		//÷ÿ‘ÿ‘À ‰∑˚
+		class CVector
+		{
+		public:
+			CVector():
+				m_iX{ 0 },
+				m_iY{ 0 }{ n++; }
+			CVector(size_t x, size_t y) :
+				m_iX{x}, 
+				m_iY{y}{ n++; }
+			CVector operator + (const CVector& param);
+			size_t GetX() { return m_iX; }
+			size_t GetY() { return m_iY; }
+			static size_t n;
+		private:
+			size_t m_iX;
+			size_t m_iY;
+		};
+
 	}
 }
 
+size_t vsnc::test::CVector::n = 0;
 
 int main()
 {
+#ifdef UNIQUE_RESET
 	std::unique_ptr<vsnc::test::Student> student;
 	student = std::make_unique<vsnc::test::Student>("Tom", 12);
 	student->SelfIntroduction();
@@ -31,7 +52,23 @@ int main()
 	std::cout << student.get() << std::endl;
 
 	student.reset();
+#endif // UNIQUE_RESET
+
+	vsnc::test::CVector foo{ 4,2 };
+	vsnc::test::CVector bar{ 1,8 };
+	auto result = foo + bar;
+	std::cout << "x: " << result.GetX() << std::endl;
+	std::cout << "y: " << result.GetY() << std::endl;
+	std::cout << "n: " << bar.n << std::endl;
 	return 0;
+}
+
+vsnc::test::CVector vsnc::test::CVector::operator+(const CVector& param)
+{
+	CVector temp;
+	temp.m_iX = this->m_iX + param.m_iX;
+	temp.m_iY = this->m_iY + param.m_iY;
+	return temp;
 }
 
 void vsnc::test::__get_ip()
