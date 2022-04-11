@@ -25,6 +25,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "leetcodeTest", "leetcodeTes
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vsnc_string", "vsnc_string\vsnc_string.vcxproj", "{2DC6DD64-65DE-4A65-8C2C-345079AEA540}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "specialMembers", "specialMembers\specialMembers.vcxproj", "{695DE94B-8B91-4F27-A94F-1E4D44081D61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -121,6 +123,14 @@ Global
 		{2DC6DD64-65DE-4A65-8C2C-345079AEA540}.Release|x64.Build.0 = Release|x64
 		{2DC6DD64-65DE-4A65-8C2C-345079AEA540}.Release|x86.ActiveCfg = Release|Win32
 		{2DC6DD64-65DE-4A65-8C2C-345079AEA540}.Release|x86.Build.0 = Release|Win32
+		{695DE94B-8B91-4F27-A94F-1E4D44081D61}.Debug|x64.ActiveCfg = Debug|x64
+		{695DE94B-8B91-4F27-A94F-1E4D44081D61}.Debug|x64.Build.0 = Debug|x64
+		{695DE94B-8B91-4F27-A94F-1E4D44081D61}.Debug|x86.ActiveCfg = Debug|Win32
+		{695DE94B-8B91-4F27-A94F-1E4D44081D61}.Debug|x86.Build.0 = Debug|Win32
+		{695DE94B-8B91-4F27-A94F-1E4D44081D61}.Release|x64.ActiveCfg = Release|x64
+		{695DE94B-8B91-4F27-A94F-1E4D44081D61}.Release|x64.Build.0 = Release|x64
+		{695DE94B-8B91-4F27-A94F-1E4D44081D61}.Release|x86.ActiveCfg = Release|Win32
+		{695DE94B-8B91-4F27-A94F-1E4D44081D61}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
